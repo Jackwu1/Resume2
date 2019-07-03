@@ -83,14 +83,71 @@
           </footer>
         </div>
       </div>
-
-      <a class="button" href="#">下载 PDF 简历</a>
-
-      <p>
-        吴振全， 资深前端工程师，资深前端讲师，现在在 饥人谷 教前端课程。<br>
-        技能：前端开发，Rails 开发，Node.js 开发
-      </p>
-
     </main>
+	<div class="downLoadPDF">
+		<a class="button" href="#">下载 PDF 简历</a>
+	</div>
+	<p class="personInfo">
+	  吴振全， 资深前端工程师，资深前端讲师，现在在 饥人谷 教前端课程。<br>
+	  技能：前端开发，Rails 开发，Node.js 开发
+	</p>
+	<h2 class="skill">技能</h2>
+	<section class="personSkill">
+		<ul class="fix">
+			<li>
+				<div>HTML5 & CSS3</div>
+				<div class="bar"></div>
+			</li>
+			<li>
+				<div>JavaScript</div>
+				<div class="bar"></div>
+			</li>
+			<li>
+				<div>JQuery</div>
+				<div class="bar"></div>
+			</li>
+			<li>
+				<div>Vue.js</div>
+				<div class="bar"></div>
+			</li>
+			<li>
+				<div>React.js</div>
+				<div class="bar"></div>
+			</li>
+			<li>
+				<div>Node.js</div>
+				<div class="bar"></div>
+			</li>
+		</ul>
+	</section>
+	<section class="works">
+		<h2>作品集</h2>
+		<nav>
+			<ul class="workChild fix" id="workChild">
+				<li class="line">所有</li>
+				<li>框架</li>
+				<li>原生JS&CSS</li>
+			</ul>
+		</nav>
+		<div class="picture fix">
+			<div class="big lt">
+				<img src="img/1.jpg" >
+			</div>
+			<div class="small rl">
+				<img src="img/2.jpg" >
+			</div>
+			<div class="small rl">
+				<img src="img/3.jpg" >
+			</div>
+		</div>
+	</section>
   </body>
-<
+  <script type="text/javascript">
+		let workChild = document.getElementById('workChild');
+		workChild.addEventListener('click',function(e){
+			for(let i = 0; i < workChild.children.length; i++){
+				workChild.children[i].className = '';
+			}
+			e.target.className = 'line'
+		})
+  </script>

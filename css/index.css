@@ -4,7 +4,7 @@
 	font-size: 16px;
 }
 body{
-	/* background: black; */
+	background: #efefef;
 	/* color: white; */
 }
 ul{
@@ -38,12 +38,15 @@ a{
 	font-size: 24px;
     font-family: 'Arial Black';
 }
+.topNavBar .logo a{
+	display: inline-block;
+}
 .topNavBar .logo a span{
 	font-size: 24px;
 }
 .topNavBar .logo a span.rs{
 	color: #e6686a;
-	margin-left: 8px;
+	margin-left: 18px;
 }
 .topNavBar .logo a span.card{
 	color: #9a9da2;
@@ -63,18 +66,14 @@ a{
 }
 /* banner图 */
 .banner{
-	position: relative;
 	width: 100%;
 	height: 500px;
 	background: url(../img/rs-cover.jpg) center center;
 	background-size: cover;
 }
 .banner .mask{
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0; 
+	width: 100%;
+	height: 100%;
 	background-color: rgba(0, 0, 0, 0.8);
 }
 
@@ -85,6 +84,10 @@ main > .card{
 	background: white;
 	margin-top: 30px;
 	font-size: 16px;
+	margin-top: -150px;
+}
+main > .card > div{
+	padding: 40px;
 }
 main > .card .picture{
 	width: 38%;
@@ -99,6 +102,7 @@ main > .card .text .welcome{
 	padding: 5px 10px;
 	color: white;
 	background: #e6686a;
+	margin-top: 15px;
 }
 main > .card .text .welcome:after{
 	content: '';
@@ -113,36 +117,159 @@ main > .card .text .welcome:after{
 	border-bottom: 10px solid transparent;
 	
 }
-.text > .profile > h1{
+main .text > .profile > h1{
 	margin-top: 20px;
 	font-size: 50px;
 	font-weight: 700;
 }
-.text > .profile p{
+main .text > .profile p{
 	margin-bottom: 20px;
 }
-.text > .profile dl{
+main .text > .profile dl{
 	margin-top: 20px;
 }
-.text > .profile dl dt{
+main .text > .profile dl dt{
 	width: 30%;
 	padding: 5px 0;
 	font-weight: 700;
 }
-.text > .profile dl dd{
+main .text > .profile dl dd{
 	width: 70%;
 	padding: 5px 0;
 }
-footer{
+main footer{
 	background: #E6686A;
 	text-align: center;
 }
-footer a{
+main footer a{
 	display: inline-block;
 	padding: 10px 10px;
 }
-footer .icon{
+main footer .icon{
 	width: 30px;
 	height: 30px;
 	fill:white;
+}
+
+.downLoadPDF{
+	text-align: center;
+	margin-top: 30px;
+}
+.downLoadPDF a{
+	display: inline-block;
+	font-size: 14px;
+	border: 1px solid #cdcfd1;
+	padding: 15px 55px;
+	transition: box-shadow 0.2s;
+}
+.downLoadPDF a:hover{
+	box-shadow: 0px 4px 13px 0px rgba(0, 0, 0, 0.2);;
+}
+.personInfo{
+	text-align: center;
+	margin-top: 30px;
+	font-family: kai;
+	font-size: 18px;
+	line-height: 1.8;
+}
+.skill{
+	text-align: center;
+	font-weight: 600;
+	font-size: 30px;
+	margin-top: 20px;
+}
+.personSkill{
+	max-width: 940px;
+	margin: 0 auto;
+	margin-top: 60px;
+	box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+}
+.personSkill ul{
+	padding: 30px;
+}
+.personSkill ul li{
+	float: left;
+	width: 48%;
+}
+.personSkill ul li:nth-child(even){
+	margin-left: 30px;
+}
+.personSkill ul li .bar{
+	height: 5px;
+	background: #FAE1E1;
+	border-radius: 2px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+.personSkill ul li .bar::after{
+	content: '';
+	display: block;
+	width: 10%;
+	height: 5px;
+	background: #E6686A;
+	border-radius: 2px;
+}
+.personSkill ul li:nth-child(2) .bar::after{
+	width: 20%;
+}
+.personSkill ul li:nth-child(3) .bar::after{
+	width: 30%;
+}
+.personSkill ul li:nth-child(4) .bar::after{
+	width: 40%;
+}
+.personSkill ul li:nth-child(5) .bar::after{
+	width: 50%;
+}
+.personSkill ul li:nth-child(6) .bar::after{
+	width: 60%;
+}
+.works{
+	max-width: 940px;
+	margin: 0 auto;
+}
+.works h2{
+	text-align: center;
+	font-size: 30px;
+	margin-top: 30px;
+}
+.works nav{
+	text-align: center;
+	margin-top: 20px;
+}
+.works .workChild{
+	display: inline-block;
+}
+.works .workChild li{
+	float: left;
+	padding: 5px 10px;
+}
+.works .workChild li{
+	border-bottom: 5px solid #FFFFFF;
+	border-radius: 2px;
+}
+.works .workChild li:hover{
+	cursor: pointer;
+}
+.works .workChild .line{
+	border-bottom: 5px solid #E6686A;
+}
+.works .picture{
+	height: 600px;
+	margin-top: 30px;
+}
+.works .picture .big{
+	height: 600px;
+}
+.works .picture .small{
+	height: 300px;
+}
+.works .picture .small img{
+	height: 280px;
+}
+.works .picture .small:nth-child(3){
+	margin-top: 20px;
+}
+.works .picture .big img{
+	height: 600px;
 }
