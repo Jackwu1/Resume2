@@ -241,10 +241,40 @@ main footer .icon{
 	display: inline-block;
 }
 .works .workChild li{
-	float: left;
 	padding: 5px 10px;
+	cursor: pointer;
 }
-.works .workChild li{
+.works .workChild .bar{
+	display: block;
+	clear: both;
+	height: 5px;
+	background: #FFFFFF;
+	border-radius: 2px;
+}
+.works .workChild .bar > div{
+	transition: all .4s; 
+}
+.works .workChild .stat1{
+	width: 52px;
+	height: 5px;
+	background: #E6686A;
+	border-radius: 2px;
+}
+.works .workChild .stat2{
+	width: 52px;
+	height: 5px;
+	background: #E6686A;
+	border-radius: 2px;
+	margin-left: 52px;
+}
+.works .workChild .stat3{
+	width: 110.6px;
+	height: 5px;
+	background: #E6686A;
+	border-radius: 2px;
+	margin-left: 104px;
+}
+/* .works .workChild li{
 	border-bottom: 5px solid #FFFFFF;
 	border-radius: 2px;
 }
@@ -253,7 +283,7 @@ main footer .icon{
 }
 .works .workChild .line{
 	border-bottom: 5px solid #E6686A;
-}
+} */
 .works .picture{
 	height: 600px;
 	margin-top: 30px;
