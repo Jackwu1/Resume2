@@ -25,12 +25,20 @@ a{
 	text-decoration: none;
 	color: #000000;
 }
+.sticky{
+	background: #FFFFFF;
+	box-shadow: 0 0 10px rgba(0,0,0,0.25);
+	color: black;
+	padding: 1px 0 !important;
+}
 .topNavBar {
 	width: 100%;
-	margin-top: 20px;
 	position: fixed;
 	z-index: 2;
 	top: 0px;
+	transition: all .5s;
+	padding: 10px 0;
+	/* background: #FFFFFF; */
 }
 	
 .topNavBar .logo{
@@ -40,6 +48,7 @@ a{
 }
 .topNavBar .logo a{
 	display: inline-block;
+	padding: 9px 0px;
 }
 .topNavBar .logo a span{
 	font-size: 24px;
@@ -55,14 +64,40 @@ a{
 	color: #b7b7b7;
 	font-size: 12px;
 }
-.topNavBar nav li{
-	padding: 10px 15px;
+.topNavBar nav ul{
+	color: #b7b7b7;
+	font-size: 12px;
 }
 .topNavBar nav li{
-	border-bottom: 3px solid transparent;
+	padding: 15px 15px;
+	position: relative;
 }
-.topNavBar nav li:hover{
-	border-bottom: 3px solid #e6686a;
+.topNavBar nav li ul{
+	position: absolute;
+	border: 1px solid #000000;
+	left: 0px;
+	background: #FFFFFF;
+}
+.topNavBar nav li ul > li{
+	font-size: 14px;
+	padding: 5px 2px;
+}
+.topNavBar nav li a:after{
+	content: '';
+	display: block;
+	width: 0%;
+	height: 3px;
+	background: #e6686a;
+	transition: all 1s; 
+}
+.topNavBar nav li:hover .active:after{
+	width: 100%;
+}
+.topNavBar.sticky nav a {
+	color: #000000;
+}
+.topNavBar.sticky nav ul{
+	color: #000000;
 }
 /* banner图 */
 .banner{
@@ -76,7 +111,6 @@ a{
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.8);
 }
-
 /* main图片 */
 main > .card{
 	max-width: 940px;
@@ -84,7 +118,7 @@ main > .card{
 	background: white;
 	margin-top: 30px;
 	font-size: 16px;
-	margin-top: -150px;
+	margin-top: -350px;
 }
 main > .card > div{
 	padding: 40px;
@@ -302,4 +336,48 @@ main footer .icon{
 }
 .works .picture .big img{
 	height: 600px;
+}
+.circleActive{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	background: #888;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 10;
+}
+.circleActive:after{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-radius: 50px;
+	background-color: black;
+	animation: s 1.5s linear infinite;
+}
+.circleActive:before{
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	border-radius: 50px;
+	background-color: black;
+	animation: s 1s linear infinite;
+}
+@keyframes s{
+	0%{
+		width: 0px;
+		height: 0px;
+		opacity: 1;
+	}
+	100%{
+		width: 50px;
+		height: 50px;
+		opacity: 0;
+	}
 }

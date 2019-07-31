@@ -14,7 +14,10 @@
 	</style>
   </head>
   <body>
-    <div class="topNavBar fix">
+	<div class="circle circleActive" id="circle">
+		
+	</div>
+    <div class="topNavBar fix" id="topNavBar">
 		<div class="lt logo">
 			<a href="#">
 				<span class="rs">RS</span>
@@ -23,16 +26,21 @@
 		</div>
 
       <nav class="rl fix">
-        <ul class="lt fix">
-          <li class="lt"><a href="#">ABOUT</a></li>
-          <li class="lt"><a href="#">SKILLS</a></li>
-          <li class="lt"><a href="#">EXPERIENCE</a></li>
-          <li class="lt"><a href="#">PRICING</a></li>
-          <li class="lt"><a href="#">BLOG</a></li>
-          <li class="lt"><a href="#">CALENDAR</a></li>
-          <li class="lt"><a href="#">CONTACT</a></li>
-          <li class="lt"><a href="#">OTHER</a></li>
-          <li class="lt"><a href="#">ALL DEMOS</a></li>
+        <ul class="lt fix" id="nav">
+          <li class="lt"><a href="#siteAbout">关于</a></li>
+          <li class="lt"><a href="#siteSkills">技能</a></li>
+          <li class="lt">
+			<a href="#siteWorks">作品</a>
+			<ul>
+				<li>作品1</li>
+				<li>作品2</li>
+				<li>作品3</li>
+			</ul>
+		  </li>
+          <li class="lt"><a href="#PRICING">博客</a></li>
+          <li class="lt"><a href="#BLOG">日历</a></li>
+          <li class="lt"><a href="#CALENDAR">联系方式</a></li>
+          <li class="lt"><a href="#CONTACT">其他</a></li>
         </ul>
       </nav>
     </div>
@@ -40,7 +48,7 @@
 		<div class="mask"></div>
 	</div>
     <main>
-      <div class="card fix">
+      <div class="card fix" id="siteAbout">
 		<div class="fix">
 			<div class="picture lt">
 			  <img src="img/avatar.jpg" alt="头像">
@@ -91,7 +99,7 @@
 	  吴振全， 资深前端工程师，资深前端讲师，现在在 饥人谷 教前端课程。<br>
 	  技能：前端开发，Rails 开发，Node.js 开发
 	</p>
-	<h2 class="skill">技能</h2>
+	<h2 class="skill" id="siteSkills">技能</h2>
 	<section class="personSkill">
 		<ul class="fix">
 			<li>
@@ -121,7 +129,7 @@
 		</ul>
 	</section>
 	<section class="works">
-		<h2>作品集</h2>
+		<h2 id="siteWorks">作品集</h2>
 		<nav>
 			<ul class="workChild" id="workChild">
 				<li class="lt">所有</li>
@@ -146,9 +154,25 @@
 	</section>
   </body>
   <script type="text/javascript">
+		function scroTop(dom) {
+			if(window.scrollY > 0) {
+				dom.classList.add('sticky')
+			}else {
+				dom.classList.remove('sticky')
+			}
+		}
+		setTimeout(function() {
+			circle.classList.remove('circleActive')
+		}, 1000)
+		let topNavBar = document.getElementById('topNavBar');
 		let workChild = document.getElementById('workChild');
 		let workLi = workChild.getElementsByTagName('li');
 		let inlineBar = document.getElementById('inlineBar');
+		let circle = document.getElementById('circle');
+		let nav = document.getElementById('nav');
+		
+		scroTop(topNavBar);
+			
 		for(let i = 0; i < workLi.length; i++){
 			workLi[i].onclick = function(){
 				if(i === 0) {
@@ -159,5 +183,26 @@
 					inlineBar.className = 'stat3';
 				}
 			}
+		}
+		for(let i = 0; i < nav.children.length; i++) {
+			nav.children[i].onmouseenter = function(e) {
+				for(let j = 0; j < nav.children.length; j++) {
+					nav.children[i].children[0].className = '';
+				}
+				nav.children[i].children[0].className = 'active';
+			}
+			nav.children[i].onmouseleave = function() {
+				nav.children[i].children[0].className = '';
+			}
+			nav.children[i].onclick = function(e){
+				e.preventDefault()
+				let href = this.children[0].getAttribute('href')
+				let element = document.querySelector(href);
+				window.scrollTo(0, (element.offsetTop - this.offsetHeight))
+			}
+		}
+		
+		window.onscroll = function () {
+			scroTop(topNavBar)
 		}
   </script>
