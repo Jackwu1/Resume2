@@ -28,7 +28,14 @@
       <nav class="rl fix">
         <ul class="lt fix" id="nav">
           <li class="lt"><a href="#siteAbout">关于</a></li>
-          <li class="lt"><a href="#siteSkills">技能</a></li>
+          <li class="lt">
+			<a href="#siteSkills">技能</a>
+			<ul>
+				<li>技能1</li>
+				<li>技能2</li>
+				<li>技能3</li>
+			</ul>
+		  </li>
           <li class="lt">
 			<a href="#siteWorks">作品</a>
 			<ul>
@@ -37,8 +44,22 @@
 				<li>作品3</li>
 			</ul>
 		  </li>
-          <li class="lt"><a href="#PRICING">博客</a></li>
-          <li class="lt"><a href="#BLOG">日历</a></li>
+          <li class="lt">
+			<a href="#PRICING">博客</a>
+			<ul>
+				<li>博客1</li>
+				<li>博客2</li>
+				<li>博客3</li>
+			</ul>
+		  </li>
+          <li class="lt">
+			<a href="#BLOG">日历</a>
+			<ul>
+				<li>日历1</li>
+				<li>日历2</li>
+				<li>日历3</li>
+			</ul>
+		  </li>
           <li class="lt"><a href="#CALENDAR">联系方式</a></li>
           <li class="lt"><a href="#CONTACT">其他</a></li>
         </ul>
@@ -186,6 +207,7 @@
 		}
 		for(let i = 0; i < nav.children.length; i++) {
 			nav.children[i].onmouseenter = function(e) {
+				// console.log(nav.children[1].children, 'nav.children')
 				for(let j = 0; j < nav.children.length; j++) {
 					nav.children[i].children[0].className = '';
 				}
