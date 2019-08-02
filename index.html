@@ -174,6 +174,7 @@
 		</div>
 	</section>
   </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
   <script type="text/javascript">
 		function scroTop(dom) {
 			if(window.scrollY > 0) {
@@ -220,11 +221,44 @@
 				e.preventDefault()
 				let href = this.children[0].getAttribute('href')
 				let element = document.querySelector(href);
-				window.scrollTo(0, (element.offsetTop - this.offsetHeight))
+				// let frame = 24;//帧数
+				// let timer = (element.offsetTop) / frame;
+				// window.scrollY
+				let elementTop = element.offsetTop - this.offsetHeight;
+				let scrollTie = setInterval(function() {
+					if(elementTop > window.scrollY){
+						window.scrollTo(window.scrollY, (window.scrollY + 24))
+						if(window.scrollY >= elementTop){
+							clearInterval(scrollTie)
+						}
+					}else if(elementTop < window.scrollY) {
+						window.scrollTo(window.scrollY, (window.scrollY -24))
+						if(window.scrollY <= 0){
+							clearInterval(scrollTie)
+						}
+					}	
+				}, 20)
+				// window.scrollTo(0, (element.offsetTop - this.offsetHeight))
 			}
 		}
 		
 		window.onscroll = function () {
 			scroTop(topNavBar)
 		}
+		// tween.js代码
+// 		function animate(time) {
+// 			requestAnimationFrame(animate);
+// 			TWEEN.update(time);
+// 		}
+// 		requestAnimationFrame(animate);
+// 
+// 		const coords = { x: 0, y: 0 }; // Start at (0, 0)
+// 		const tween = new TWEEN.Tween(coords) // Create a new tween that modifies 'coords'.
+//         .to({ x: 300, y: 200 }, 1000) // Move to (300, 200) in 1 second.
+//         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
+//         .onUpdate(() => { // Called after tween.js updates 'coords'.
+//             // Move 'box' to the position described by 'coords' with a CSS translation.
+//             box.style.setProperty('transform', `translate(${coords.x}px, ${coords.y}px)`);
+//         })
+//         .start(); // Start the tween immediately.
   </script>
