@@ -98,9 +98,13 @@ a{
 	background: #e6686a;
 	transition: all 1s; 
 }
-.topNavBar nav li:hover .active:after{
+
+.topNavBar nav li .active:after{
 	width: 100%;
 }
+.topNavBar nav li a.activeScroll:after{
+	width: 100%;
+} 
 .topNavBar.sticky nav a {
 	color: #000000;
 }
@@ -124,8 +128,11 @@ main > .card{
 	max-width: 940px;
 	margin: 0 auto;
 	background: white;
-	margin-top: 30px;
 	font-size: 16px;
+	margin-top: -150px;
+	transition: all 1s; 
+}
+main > .card.active {
 	margin-top: -350px;
 }
 main > .card > div{
@@ -218,6 +225,10 @@ main footer .icon{
 	text-align: center;
 	font-weight: 600;
 	font-size: 30px;
+	margin-top: 220px;
+	transition: all 1s; 
+}
+.skill.active{
 	margin-top: 20px;
 }
 .personSkill{
@@ -236,34 +247,38 @@ main footer .icon{
 .personSkill ul li:nth-child(even){
 	margin-left: 30px;
 }
-.personSkill ul li .bar{
+.personSkill ul li .skillBar{
 	height: 5px;
 	background: #FAE1E1;
 	border-radius: 2px;
 	margin-top: 5px;
 	margin-bottom: 20px;
 }
-.personSkill ul li .bar::after{
+.personSkill ul li .skillBar::after{
 	content: '';
 	display: block;
-	width: 10%;
+	width: 0%;
 	height: 5px;
 	background: #E6686A;
 	border-radius: 2px;
+	transition: all .8s;
 }
-.personSkill ul li:nth-child(2) .bar::after{
+.personSkill ul li:nth-child(1) .active::after{
+	width: 10%;
+}
+.personSkill ul li:nth-child(2) .active::after{
 	width: 20%;
 }
-.personSkill ul li:nth-child(3) .bar::after{
+.personSkill ul li:nth-child(3) .active::after{
 	width: 30%;
 }
-.personSkill ul li:nth-child(4) .bar::after{
+.personSkill ul li:nth-child(4) .active::after{
 	width: 40%;
 }
-.personSkill ul li:nth-child(5) .bar::after{
+.personSkill ul li:nth-child(5) .active::after{
 	width: 50%;
 }
-.personSkill ul li:nth-child(6) .bar::after{
+.personSkill ul li:nth-child(6) .active::after{
 	width: 60%;
 }
 .works{
@@ -273,6 +288,9 @@ main footer .icon{
 .works h2{
 	text-align: center;
 	font-size: 30px;
+	margin-top: 230px;
+}
+.works h2.active{
 	margin-top: 30px;
 }
 .works nav{

@@ -125,27 +125,27 @@
 		<ul class="fix">
 			<li>
 				<div>HTML5 & CSS3</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 			<li>
 				<div>JavaScript</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 			<li>
 				<div>JQuery</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 			<li>
 				<div>Vue.js</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 			<li>
 				<div>React.js</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 			<li>
 				<div>Node.js</div>
-				<div class="bar"></div>
+				<div class="skillBar"></div>
 			</li>
 		</ul>
 	</section>
@@ -176,24 +176,74 @@
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
   <script type="text/javascript">
+		// 页面初始化移除加载
 		function scroTop(dom) {
 			if(window.scrollY > 0) {
 				dom.classList.add('sticky')
 			}else {
-				dom.classList.remove('sticky')
+				dom.classList.remove('sticky')	
 			}
+			navChildList = [];
+			let minIndex = 0;
+			for(let i = 0; i < ItemList.length; i++) {
+				if(ItemList[i]) {
+					let elementTop = ItemList[i].offsetTop - nav.children[0].offsetHeight;
+					navChildList.push(elementTop)
+				}
+			}
+			for(let i = 0; i < navChildList.length; i++){
+				if(navChildList[i]) {
+					if(Math.abs(navChildList[i] - window.scrollY) <= Math.abs(navChildList[minIndex] - window.scrollY)) {
+						minIndex = i
+						ItemList[i].classList.add('active')
+					}
+					
+				}
+				if(minIndex === 1) {
+					for(let i = 0; i < skillBar.length; i++) {
+						skillBar[i].classList.add('active')
+					}
+				}	
+			}
+			changeNavType(nav.children, minIndex, 'activeScroll');
 		}
-		setTimeout(function() {
-			circle.classList.remove('circleActive')
-		}, 1000)
+		// 是否显示主题
+		function ItemAppear(ItemList, j) {
+			for(let i = 0; i < ItemList.length; i++) {
+				if(ItemList[i]) {
+					ItemList[i].classList.remove('active')
+				}
+			}
+			ItemList[j].classList.add('active')
+		}
+		// 导航栏清楚函数
+		function changeNavType(navChild, i , activeTpe) {
+			for(let j = 0; j < navChild.length; j++) {
+				navChild[j].children[0].classList.remove(activeTpe);
+			}
+			navChild[i].children[0].classList.add(activeTpe)
+		}
+		// tween.js代码
+		function animate(time) {
+			requestAnimationFrame(animate);
+			TWEEN.update(time);
+		}
+		requestAnimationFrame(animate);
+		// setTimeout(function() {
+			// circle.classList.remove('circleActive')
+		// }, 1000)
 		let topNavBar = document.getElementById('topNavBar');
 		let workChild = document.getElementById('workChild');
 		let workLi = workChild.getElementsByTagName('li');
 		let inlineBar = document.getElementById('inlineBar');
 		let circle = document.getElementById('circle');
 		let nav = document.getElementById('nav');
-		
-		scroTop(topNavBar);
+		let skillBar = document.getElementsByClassName('skillBar')
+		let scrollTie = null;
+		let navChildList = [];//nav下子集的高度
+		let ItemList = []//目前显示的主题
+		circle.classList.remove('circleActive')
+		// scroTop(topNavBar);
 			
 		for(let i = 0; i < workLi.length; i++){
 			workLi[i].onclick = function(){
@@ -207,58 +257,39 @@
 			}
 		}
 		for(let i = 0; i < nav.children.length; i++) {
+			let href = nav.children[i].children[0].getAttribute('href');
+			let element = document.querySelector(href);
+			ItemList.push(element)
+			let elementTop = null
+			if(element) {
+				elementTop = element.offsetTop - nav.children[i].offsetHeight;
+			} 
+			navChildList.push(elementTop)
+			scroTop(topNavBar);
 			nav.children[i].onmouseenter = function(e) {
-				// console.log(nav.children[1].children, 'nav.children')
-				for(let j = 0; j < nav.children.length; j++) {
-					nav.children[i].children[0].className = '';
-				}
-				nav.children[i].children[0].className = 'active';
+				changeNavType(nav.children, i, 'active')
 			}
 			nav.children[i].onmouseleave = function() {
-				nav.children[i].children[0].className = '';
+				nav.children[i].children[0].classList.remove('active')
 			}
 			nav.children[i].onclick = function(e){
 				e.preventDefault()
-				let href = this.children[0].getAttribute('href')
-				let element = document.querySelector(href);
-				// let frame = 24;//帧数
-				// let timer = (element.offsetTop) / frame;
-				// window.scrollY
-				let elementTop = element.offsetTop - this.offsetHeight;
-				let scrollTie = setInterval(function() {
-					if(elementTop > window.scrollY){
-						window.scrollTo(window.scrollY, (window.scrollY + 24))
-						if(window.scrollY >= elementTop){
-							clearInterval(scrollTie)
-						}
-					}else if(elementTop < window.scrollY) {
-						window.scrollTo(window.scrollY, (window.scrollY -24))
-						if(window.scrollY <= 0){
-							clearInterval(scrollTie)
-						}
-					}	
-				}, 20)
-				// window.scrollTo(0, (element.offsetTop - this.offsetHeight))
+				clearInterval(scrollTie)
+				let elementTop = navChildList[i]
+				// 页面滑动
+				var position = {y: window.scrollY };
+				var tween = new TWEEN.Tween(position);
+				tween.to({ y: elementTop }, 1000);
+				tween.easing(TWEEN.Easing.Cubic.InOut)
+				window.scrollTo(0, (element.offsetTop - this.offsetHeight))
+				tween.onUpdate(function() {
+					window.scrollTo(0,position.y) 
+				});
+				tween.start();
 			}
 		}
 		
 		window.onscroll = function () {
-			scroTop(topNavBar)
+			scroTop(topNavBar);
 		}
-		// tween.js代码
-// 		function animate(time) {
-// 			requestAnimationFrame(animate);
-// 			TWEEN.update(time);
-// 		}
-// 		requestAnimationFrame(animate);
-// 
-// 		const coords = { x: 0, y: 0 }; // Start at (0, 0)
-// 		const tween = new TWEEN.Tween(coords) // Create a new tween that modifies 'coords'.
-//         .to({ x: 300, y: 200 }, 1000) // Move to (300, 200) in 1 second.
-//         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
-//         .onUpdate(() => { // Called after tween.js updates 'coords'.
-//             // Move 'box' to the position described by 'coords' with a CSS translation.
-//             box.style.setProperty('transform', `translate(${coords.x}px, ${coords.y}px)`);
-//         })
-//         .start(); // Start the tween immediately.
   </script>
