@@ -4,6 +4,7 @@
     <title>吴振全的个人简历</title>
 	<script type="text/javascript" src="js/icon.js"></script>
     <link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
 	<style type="text/css">
 		.icon {
 		   width: 1em; height: 1em;
@@ -161,7 +162,7 @@
 				</div>
 			</ul>
 		</nav>
-		<div class="picture fix">
+		<!-- <div class="picture fix">
 			<div class="big lt">
 				<img src="img/1.jpg" >
 			</div>
@@ -171,67 +172,32 @@
 			<div class="small rl">
 				<img src="img/3.jpg" >
 			</div>
+		</div> -->
+		<div class="swiperOut">
+			<div class="swiper-container">
+				<!-- Additional required wrapper -->
+				<div class="swiper-wrapper">
+					<!-- Slides -->
+					<img src="img/works/apple-style-slides.jpg" class="swiper-slide">
+					<img src="img/works/canvas.jpg" class="swiper-slide">
+					<img src="img/works/nav-page.jpg" class="swiper-slide">
+				</div>
+				<!-- If we need pagination -->
+				<div class="swiper-pagination"></div>
+
+				<!-- If we need navigation buttons -->
+				<!-- <div class="swiper-button-prev"></div>
+				<div class="swiper-button-next"></div> -->
+			</div>
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
 		</div>
+		
 	</section>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.3.5/Tween.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
   <script type="text/javascript">
-		// 页面初始化移除加载
-		function scroTop(dom) {
-			if(window.scrollY > 0) {
-				dom.classList.add('sticky')
-			}else {
-				dom.classList.remove('sticky')	
-			}
-			navChildList = [];
-			let minIndex = 0;
-			for(let i = 0; i < ItemList.length; i++) {
-				if(ItemList[i]) {
-					let elementTop = ItemList[i].offsetTop - nav.children[0].offsetHeight;
-					navChildList.push(elementTop)
-				}
-			}
-			for(let i = 0; i < navChildList.length; i++){
-				if(navChildList[i]) {
-					if(Math.abs(navChildList[i] - window.scrollY) <= Math.abs(navChildList[minIndex] - window.scrollY)) {
-						minIndex = i
-						ItemList[i].classList.add('active')
-					}
-					
-				}
-				if(minIndex === 1) {
-					for(let i = 0; i < skillBar.length; i++) {
-						skillBar[i].classList.add('active')
-					}
-				}	
-			}
-			changeNavType(nav.children, minIndex, 'activeScroll');
-		}
-		// 是否显示主题
-		function ItemAppear(ItemList, j) {
-			for(let i = 0; i < ItemList.length; i++) {
-				if(ItemList[i]) {
-					ItemList[i].classList.remove('active')
-				}
-			}
-			ItemList[j].classList.add('active')
-		}
-		// 导航栏清楚函数
-		function changeNavType(navChild, i , activeTpe) {
-			for(let j = 0; j < navChild.length; j++) {
-				navChild[j].children[0].classList.remove(activeTpe);
-			}
-			navChild[i].children[0].classList.add(activeTpe)
-		}
-		// tween.js代码
-		function animate(time) {
-			requestAnimationFrame(animate);
-			TWEEN.update(time);
-		}
-		requestAnimationFrame(animate);
-		// setTimeout(function() {
-			// circle.classList.remove('circleActive')
-		// }, 1000)
 		let topNavBar = document.getElementById('topNavBar');
 		let workChild = document.getElementById('workChild');
 		let workLi = workChild.getElementsByTagName('li');
@@ -243,53 +209,12 @@
 		let navChildList = [];//nav下子集的高度
 		let ItemList = []//目前显示的主题
 		circle.classList.remove('circleActive')
-		// scroTop(topNavBar);
-			
-		for(let i = 0; i < workLi.length; i++){
-			workLi[i].onclick = function(){
-				if(i === 0) {
-					inlineBar.className = 'stat1';
-				}else if(i === 1){
-					inlineBar.className = 'stat2';
-				}else if(i === 2){
-					inlineBar.className = 'stat3';
-				}
-			}
-		}
-		for(let i = 0; i < nav.children.length; i++) {
-			let href = nav.children[i].children[0].getAttribute('href');
-			let element = document.querySelector(href);
-			ItemList.push(element)
-			let elementTop = null
-			if(element) {
-				elementTop = element.offsetTop - nav.children[i].offsetHeight;
-			} 
-			navChildList.push(elementTop)
-			scroTop(topNavBar);
-			nav.children[i].onmouseenter = function(e) {
-				changeNavType(nav.children, i, 'active')
-			}
-			nav.children[i].onmouseleave = function() {
-				nav.children[i].children[0].classList.remove('active')
-			}
-			nav.children[i].onclick = function(e){
-				e.preventDefault()
-				clearInterval(scrollTie)
-				let elementTop = navChildList[i]
-				// 页面滑动
-				var position = {y: window.scrollY };
-				var tween = new TWEEN.Tween(position);
-				tween.to({ y: elementTop }, 1000);
-				tween.easing(TWEEN.Easing.Cubic.InOut)
-				window.scrollTo(0, (element.offsetTop - this.offsetHeight))
-				tween.onUpdate(function() {
-					window.scrollTo(0,position.y) 
-				});
-				tween.start();
-			}
-		}
 		
 		window.onscroll = function () {
 			scroTop(topNavBar);
 		}
   </script>
+  <script type="text/javascript" src="js/scrollTop.js"></script>
+  <script type="text/javascript" src="js/changeNav.js"></script>
+  <script type="text/javascript" src="js/workLineBar.js"></script>
+  <script type="text/javascript" src="js/swiper.js"></script>

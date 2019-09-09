@@ -354,6 +354,23 @@ main footer .icon{
 .works .picture .big img{
 	height: 600px;
 }
+.works .swiperOut{
+	position: relative;
+}
+.works .swiperOut .swiper-button-prev{
+	background-color: white;
+    width: 64px;
+    height: 64px;
+	left: -71px;
+	border-radius: 50%;
+}
+.works .swiperOut .swiper-button-next{
+	background-color: white;
+	width: 64px;
+	height: 64px;
+	right: -69px;
+	border-radius: 50%;
+}
 .circleActive{
 	display: flex;
 	justify-content: center;
