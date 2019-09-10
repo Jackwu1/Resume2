@@ -1,4 +1,3 @@
-
 // 页面初始化移除加载
 function scroTop(dom) {
 	if(window.scrollY > 0) {
@@ -29,4 +28,8 @@ function scroTop(dom) {
 		}	
 	}
 	changeNavType(nav.children, minIndex, 'activeScroll');
+}
+
+window.onscroll = function () {
+	scroTop(topNavBar);
 }
