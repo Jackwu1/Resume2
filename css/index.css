@@ -371,20 +371,24 @@ main footer .icon{
 	right: -69px;
 	border-radius: 50%;
 }
-.message {
+.Msg {
 	max-width: 940px;
 	margin: 0 auto;
 }
-.message h2{
+.Msg h2{
 	text-align: center;
 	font-size: 25px;
 	margin-top: 20px;
 }
-.message .peopleMessage {
+.Msg .peopleMessage {
 	margin-top: 20px;
 }
-.message form {
+.Msg form {
 	text-align: center;
+}
+.Msg ul > li {
+	padding: 20px 0;
+	border-bottom: 1px solid #DDD;
 }
 .circleActive{
 	display: flex;
