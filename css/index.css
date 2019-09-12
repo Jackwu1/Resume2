@@ -371,6 +371,21 @@ main footer .icon{
 	right: -69px;
 	border-radius: 50%;
 }
+.message {
+	max-width: 940px;
+	margin: 0 auto;
+}
+.message h2{
+	text-align: center;
+	font-size: 25px;
+	margin-top: 20px;
+}
+.message .peopleMessage {
+	margin-top: 20px;
+}
+.message form {
+	text-align: center;
+}
 .circleActive{
 	display: flex;
 	justify-content: center;

@@ -57,8 +57,8 @@
 				}
 				nav.children[i].onclick = function(e){
 					e.preventDefault()
-					console.log(scrollTie, 'scrollTiescrollTie')
-					clearInterval(scrollTie)
+					// console.log(scrollTie, 'scrollTiescrollTie')
+					// clearInterval(scrollTie)
 					let elementTop = navChildList[i]
 					// 页面滑动
 					var position = {y: window.scrollY };
